@@ -7,18 +7,18 @@ from films_tab import FilmsTab
 from series_tab import SeriesTab
 from register_tab import RegisterTab
 
-class Main:
+class MainApp:
     def __init__(self, root):
         self.root = root
         self.root.title("My Review List")
         self.root.geometry("740x580")
 
-        conn = sqlite3.connect("list_register.db")
+        conn = sqlite3.connect("register_table.db")
         cursor = conn.cursor()
 
         cursor.execute('''CREATE TABLE IF NOT EXISTS register_table
                           (name TEXT, category TEXT, 
-                       gender TEXT, seasons TEXT, 
+                       genre TEXT, seasons TEXT, 
                        episodes TEXT, score INTEGER, 
                        description TEXT, date TEXT)''')
 
@@ -35,5 +35,5 @@ class Main:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = Main(root)
+    app = MainApp(root)
     root.mainloop()

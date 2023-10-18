@@ -1,4 +1,4 @@
-animes_gender_options = (
+animes_genre_options = (
     "Action",
     "Adventure",
     "Comedy",
@@ -33,7 +33,7 @@ animes_gender_options = (
 )
 
 
-films_series_gender_options = (
+films_series_genre_options = (
     "Action",
     "Adventure",
     "Adventure-Comedy",
