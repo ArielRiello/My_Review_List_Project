@@ -42,19 +42,22 @@ class RegisterTab(ttk.Frame):
         if self.selected_option.get() == "Update":
             self.update_dialog = tk.Toplevel(self)
             self.update_dialog.title("Select Name to Update")
+            self.update_dialog.geometry("200x160")
 
             category_label = tk.Label(self.update_dialog, text="Select Category")
-            category_label.pack(pady=10)
+            category_label.place(x=10, y=10)
 
-            category_combobox = ttk.Combobox(self.update_dialog, values=("Animes", "Films", "Series"))
-            category_combobox.pack(pady=10)
+            category_combobox = ttk.Combobox(self.update_dialog, 
+                                             values=("Animes", "Films", "Series"),
+                                             width=25)
+            category_combobox.place(x=10, y=30)
 
             name_label = tk.Label(self.update_dialog, text="Select Name")
-            name_label.pack(pady=10)
+            name_label.place(x=10, y=60)
 
-            self.update_dialog_name_combobox = ttk.Combobox(self.update_dialog)
-            self.update_dialog_name_combobox.pack(pady=10)
-
+            self.update_dialog_name_combobox = ttk.Combobox(self.update_dialog,
+                                                            width=25)
+            self.update_dialog_name_combobox.place(x=10, y=80)
 
             def on_category_selected(event):
                 selected_category = category_combobox.get()
@@ -69,15 +72,16 @@ class RegisterTab(ttk.Frame):
 
             category_combobox.bind("<<ComboboxSelected>>", on_category_selected)
 
-            select_button = tk.Button(self.update_dialog, text="Select", command=self.fill_data_from_name)
-            select_button.pack(pady=10)
+            select_button = tk.Button(self.update_dialog, text="Select", 
+                                      command=self.fill_data_from_name,
+                                      width=24)
+            select_button.place(x=10, y=120)
 
-            
     def open_delete_dialog(self):
         if self.selected_option.get() == "Delete":
             delete_dialog = tk.Toplevel(self)
             delete_dialog.title("Select Name to Delete")
-
+            delete_dialog.geometry("200x120")
 
             def delete_selected_name():
                 selected_name = delete_dialog_name_combobox.get()
@@ -94,10 +98,10 @@ class RegisterTab(ttk.Frame):
                 print(f"Deleted entry with name: {selected_name}")
 
             name_label = tk.Label(delete_dialog, text="Select Name")
-            name_label.pack()
+            name_label.place(x=10, y=10)
 
-            delete_dialog_name_combobox = ttk.Combobox(delete_dialog)
-            delete_dialog_name_combobox.pack()
+            delete_dialog_name_combobox = ttk.Combobox(delete_dialog, width=25)
+            delete_dialog_name_combobox.place(x=10, y=30)
 
             conn = sqlite3.connect("register_table.db")
             cursor = conn.cursor()
@@ -108,8 +112,10 @@ class RegisterTab(ttk.Frame):
 
             conn.close()
 
-            delete_button = tk.Button(delete_dialog, text="Delete", command=delete_selected_name)
-            delete_button.pack()
+            delete_button = tk.Button(delete_dialog, text="Delete", 
+                                      command=delete_selected_name,
+                                      width=24)
+            delete_button.place(x=10, y=60)
 
 
     def __init__(self, notebook):
